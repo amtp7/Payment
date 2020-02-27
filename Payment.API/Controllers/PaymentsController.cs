@@ -25,9 +25,9 @@ namespace Payments.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Payment>> DoPayment(Payment payment)
+        public async Task<ActionResult<Payment>> DoPayment(Guid id, float value, int currency, DateTime date, int status, Card card)
         {
-           return await _payment.DoPayment(payment);
+           return await _payment.DoPayment(value, currency, date, status, card);
         }
     }
 }
