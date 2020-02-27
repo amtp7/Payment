@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payments.API", "Payment.API\Payments.API.csproj", "{3EEEF174-D430-4612-8E34-14FD91958609}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Domain", "Payment.Domain\Payments.Domain.csproj", "{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Infrastructure", "Ordering.Infrastructure\Payments.Infrastructure.csproj", "{4957716D-7319-49EC-AE63-8D6075EB03D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{D880638A-6894-4F83-825D-7644B7112DAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EEEF174-D430-4612-8E34-14FD91958609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EEEF174-D430-4612-8E34-14FD91958609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EEEF174-D430-4612-8E34-14FD91958609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EEEF174-D430-4612-8E34-14FD91958609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4957716D-7319-49EC-AE63-8D6075EB03D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4957716D-7319-49EC-AE63-8D6075EB03D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4957716D-7319-49EC-AE63-8D6075EB03D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4957716D-7319-49EC-AE63-8D6075EB03D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EEEF174-D430-4612-8E34-14FD91958609} = {D880638A-6894-4F83-825D-7644B7112DAB}
+		{4289D3BA-7CC2-415B-A31B-58D19EE69B3C} = {D880638A-6894-4F83-825D-7644B7112DAB}
+		{4957716D-7319-49EC-AE63-8D6075EB03D3} = {D880638A-6894-4F83-825D-7644B7112DAB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4C4235A-D0B1-4651-954A-2B8A87641EBF}
+	EndGlobalSection
+EndGlobal

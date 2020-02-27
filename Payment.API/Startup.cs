@@ -11,7 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Payment.API
+using Payments.Domain.Interfaces;
+using Payments.Domain.Model;
+
+namespace Payments.API
 {
     public class Startup
     {
@@ -26,6 +29,8 @@ namespace Payment.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddTransient<IPayment, Payment>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
