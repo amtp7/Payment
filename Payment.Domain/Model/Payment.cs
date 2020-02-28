@@ -1,9 +1,8 @@
 ﻿using System;
-using Payments.Domain.Interfaces;
 
 namespace Payments.Domain.Model
 {
-    public class Payment : IPayment
+    public class Payment
     {
         public Guid Id { get; set; }
         public float Value { get; set; }
@@ -11,20 +10,5 @@ namespace Payments.Domain.Model
         public DateTime Date { get; set; }
         public int Status { get; set; }
         public Card Card { get; set; }     
-        
-        public Payment(Guid id, float value, int currency, 
-            DateTime date, int status, Card card)
-        {
-
-        }
-        public Payment GetPayment(Guid id)
-        {
-
-        }
-
-        public int DoPayment(Payment payment)
-        {
-
-        }
     }
 }

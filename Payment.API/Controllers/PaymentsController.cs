@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System;
 
-using Payments.Domain.Interfaces;
 using Payments.Domain.Model;
+using Payments.Domain.ILogic;
 
 namespace Payments.API.Controllers
 {
@@ -11,23 +11,24 @@ namespace Payments.API.Controllers
     [Route("[controller]")]
     public class PaymentsController : ControllerBase
     {
-        private IPayment _payment;
+        private IPaymentLogic _iPaymentLogic;
 
-        public PaymentsController(Payment payment)
+        public PaymentsController(IPaymentLogic iPaymentLogic)
         {
-            _payment = payment;
+            _iPaymentLogic = iPaymentLogic;
         }
 
         [HttpGet]
-        public async Task<ActionResult<Payment>> GetPayment(Guid id)
+        public async Task<ActionResult<Payment>> GetPaymentHistoryById(Guid id)
         {
-            return await _payment.GetPayment(id);
+            return await _iPaymentLogic.GetPaymentHistoryById(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Payment>> DoPayment(Guid id, float value, int currency, DateTime date, int status, Card card)
+        public async Task<ActionResult<Payment>> SendPayment(Guid paymentId, float paymentValue, int paymentCurrency, DateTime paymentDate, int paymentStatus, 
+            int cardNumber, string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
         {
-           return await _payment.DoPayment(value, currency, date, status, card);
+           return await _iPaymentLogic.SendPayment(new Payment { });
         }
     }
 }

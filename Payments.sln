@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payments.API", "Payment.API\Payments.API.csproj", "{3EEEF174-D430-4612-8E34-14FD91958609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Domain", "Payment.Domain\Payments.Domain.csproj", "{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payments.Domain", "Payment.Domain\Payments.Domain.csproj", "{4289D3BA-7CC2-415B-A31B-58D19EE69B3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Infrastructure", "Ordering.Infrastructure\Payments.Infrastructure.csproj", "{4957716D-7319-49EC-AE63-8D6075EB03D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payments.Infrastructure", "Ordering.Infrastructure\Payments.Infrastructure.csproj", "{4957716D-7319-49EC-AE63-8D6075EB03D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{D880638A-6894-4F83-825D-7644B7112DAB}"
 EndProject
