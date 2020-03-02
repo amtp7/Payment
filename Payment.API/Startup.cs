@@ -2,17 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-using Payments.Domain.IModel;
-using Payments.Domain.Model;
+using AutoMapper;
+
+using Payments.Domain.IRepository;
+using Payments.Domain.Logic;
+using Payments.Infrastructure.EFModel;
+using Payments.Infrastructure.Repository;
+using Payments.Domain.Logic.Interfaces;
+using Payments.Domain.Logic.Classes;
 
 namespace Payments.API
 {
@@ -29,8 +37,12 @@ namespace Payments.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
 
-            services.AddTransient<IPaymentLogic, Payment>();
+            services.AddDbContext<PaymentsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:PaymentsDB"]));
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddTransient<IPaymentLogic, PaymentLogic>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

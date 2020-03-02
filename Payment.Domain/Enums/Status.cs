@@ -6,7 +6,8 @@ namespace Payments.Domain.Enums
 {
     public enum Status
     {
-        Success,
-        Failure
+        Succeded,
+        Failed,
+        Processing
     }
 }
