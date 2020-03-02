@@ -8,7 +8,7 @@ using Payments.Domain.Logic.Interfaces;
 namespace Payments.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PaymentsController : ControllerBase
     {
         private IPaymentLogic _iPaymentLogic;
@@ -35,14 +35,11 @@ namespace Payments.API.Controllers
                     Currency = paymentCurrency,
                     Date = DateTime.Now,
                     Status = paymentStatus,
-                    Card = new Card
-                    {
-                        Name = cardName,
-                        Number = cardNumber,
-                        ExpiryYear = cardExpiryYear,
-                        ExpiryMonth = cardExpiryMonth,
-                        Cvv = cardCvv
-                    }
+                    CardName = cardName,
+                    CardNumber = cardNumber,
+                    CardExpiryYear = cardExpiryYear,
+                    CardExpiryMonth = cardExpiryMonth,
+                    CardCvv = cardCvv
                 }
             );
         }

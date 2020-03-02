@@ -13,8 +13,10 @@ namespace Payments.Infrastructure.EFModel
         public int Currency { get; set; }
         public DateTime Date { get; set; }
         public int Status { get; set; }
-
-        public long CardId { get; set; }
-        public Card Card { get; set; }
+        public long CardNumber { get; set; }
+        public string CardName { get; set; }
+        public int CardExpiryYear { get; set; }
+        public int CardExpiryMonth { get; set; }
+        public int CardCvv { get; set; }
     }
 }

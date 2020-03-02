@@ -10,7 +10,7 @@ using Payments.Infrastructure.EFModel;
 namespace Payments.Infrastructure.Migrations
 {
     [DbContext(typeof(PaymentsContext))]
-    [Migration("20200302025342_PaymentsMigration")]
+    [Migration("20200302064959_PaymentsMigration")]
     partial class PaymentsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,33 +21,6 @@ namespace Payments.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Payments.Infrastructure.EFModel.Card", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Cvv")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExpiryMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExpiryYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Number")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Card");
-                });
-
             modelBuilder.Entity("Payments.Infrastructure.EFModel.Payment", b =>
                 {
                     b.Property<long>("Id")
@@ -55,7 +28,19 @@ namespace Payments.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CardId")
+                    b.Property<int>("CardCvv")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CardExpiryMonth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CardExpiryYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CardName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CardNumber")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Currency")
@@ -72,19 +57,7 @@ namespace Payments.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CardId")
-                        .IsUnique();
-
                     b.ToTable("Payment");
-                });
-
-            modelBuilder.Entity("Payments.Infrastructure.EFModel.Payment", b =>
-                {
-                    b.HasOne("Payments.Infrastructure.EFModel.Card", "Card")
-                        .WithOne("Payment")
-                        .HasForeignKey("Payments.Infrastructure.EFModel.Payment", "CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

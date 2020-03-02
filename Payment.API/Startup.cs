@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-using AutoMapper;
+using Microsoft.OpenApi.Models;
 
 using Payments.Domain.IRepository;
 using Payments.Domain.Logic;
@@ -21,6 +21,11 @@ using Payments.Infrastructure.EFModel;
 using Payments.Infrastructure.Repository;
 using Payments.Domain.Logic.Interfaces;
 using Payments.Domain.Logic.Classes;
+using Payments.Infrastructure.Mappers.Interfaces;
+using Payments.Infrastructure.Mappers.Classes;
+
+using AutoMapper;
+using Payments.Infrastructure.MapperProfiles;
 
 namespace Payments.API
 {
@@ -37,10 +42,25 @@ namespace Payments.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+
             services.AddAutoMapper(typeof(Startup));
 
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new PaymentProfile());
+            });
+            IMapper mapper = config.CreateMapper();
+
+            services.AddSingleton(mapper);
+           
             services.AddDbContext<PaymentsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:PaymentsDB"]));
             services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddTransient<IPaymentMapper, PaymentMapper>();
             services.AddTransient<IPaymentLogic, PaymentLogic>();
 
         }
@@ -54,6 +74,16 @@ namespace Payments.API
             }
 
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 

@@ -28,26 +28,11 @@ namespace Payments.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public void DeletePayment(Payment_Model entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Payment_Model> GetAllPayments()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Payment_Model> GetPayment(long id)
         {
             Payment paymentDb = await _context.Payment.Where(p => p.Id == id).SingleOrDefaultAsync();
             Payment_Model payment = _mapper.Map<Payment_Model>(paymentDb);
             return payment;
-        }
-
-        public void UpdatePayment(Payment_Model dbEntity, Payment_Model entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }
