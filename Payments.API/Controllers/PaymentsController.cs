@@ -25,8 +25,8 @@ namespace Payments.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> SendPayment(float paymentValue, int paymentCurrency, int paymentStatus,
-            int cardNumber, string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
+        public async Task<ActionResult<string>> SendPayment(float paymentValue, int paymentCurrency, int paymentStatus,
+            long cardNumber, string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
         {
             return await _iPaymentLogic.SendPayment(
                 new Payment

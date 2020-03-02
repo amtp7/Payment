@@ -1,18 +1,24 @@
-﻿using Payments.Domain.IRepository;
+﻿using Newtonsoft.Json;
+using Payments.Domain.IRepository;
 using Payments.Domain.Logic.Interfaces;
 using Payments.Domain.Model;
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Payments.Domain.Logic.Classes
 {
     public class PaymentLogic : IPaymentLogic
     {
-        private IPaymentRepository _iPaymentRepository;
+        private readonly IPaymentRepository _iPaymentRepository;
+        private readonly HttpClient _client;
 
-        public PaymentLogic(IPaymentRepository iPaymentRepository)
+        public PaymentLogic(IPaymentRepository iPaymentRepository, HttpClient client)
         {
             _iPaymentRepository = iPaymentRepository;
+            _client = client;
         }
 
         public async Task<Payment> GetPaymentHistoryById(long id)
@@ -20,9 +26,21 @@ namespace Payments.Domain.Logic.Classes
             return await _iPaymentRepository.GetPayment(id);
         }
 
-        public Task<int> SendPayment(Payment payment)
+        public async Task<string> SendPayment(Payment payment)
         {
-            throw new NotImplementedException();
+            string cenas = "";
+
+            var myContent = JsonConvert.SerializeObject(payment);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = _client.PostAsync("", byteContent).Result;
+
+            //var response = await _client.GetAsync(requestEndpoint);
+            cenas = await result.Content.ReadAsStringAsync();
+
+            return cenas;
         }
     }
 }
