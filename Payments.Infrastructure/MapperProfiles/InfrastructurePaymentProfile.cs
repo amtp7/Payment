@@ -4,9 +4,9 @@ using AutoMapper;
 
 namespace Payments.Infrastructure.MapperProfiles
 {
-    public class PaymentProfile : Profile
+    public class InfrastructurePaymentProfile : Profile
     {
-        public PaymentProfile()
+        public InfrastructurePaymentProfile()
         {
             CreateMap<Payment_Model, Payment_EfModel>();
             CreateMap<Payment_EfModel, Payment_Model>();

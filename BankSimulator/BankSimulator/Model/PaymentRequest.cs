@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Payments.Domain.Model
+namespace BankSimulator.Model
 {
-    public class Payment
+    public class PaymentRequest
     {
-        public long Id { get; set; }
         public float Value { get; set; }
         public string Currency { get; set; }
-        public DateTime Date { get; set; }
-        public int Status { get; set; }
         public long CardNumber { get; set; }
         public string CardName { get; set; }
         public int CardExpiryYear { get; set; }

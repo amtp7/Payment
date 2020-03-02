@@ -25,6 +25,9 @@ using AutoMapper;
 using Payments.Infrastructure.MapperProfiles;
 using System.Net.Http;
 using System.Net;
+using Payments.Domain.MapperProfiles;
+using Payments.Domain.Utils;
+using Payments.Domain.DTOs;
 
 namespace Payments.API
 {
@@ -42,36 +45,39 @@ namespace Payments.API
         {
             services.AddControllers();
 
+            // SWAGGER
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Payments API", Version = "v1" });
             });
 
+            // AUTOMAPPER
             services.AddAutoMapper(typeof(Startup));
-
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new PaymentProfile());
+                cfg.AddProfile(new InfrastructurePaymentProfile());
+                cfg.AddProfile(new DomainPaymentProfile());                
             });
             IMapper mapper = config.CreateMapper();
-
             services.AddSingleton(mapper);
            
+            // DBCONTEXT
             services.AddDbContext<PaymentsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:PaymentsDB"]));
-            services.AddTransient<IPaymentRepository, PaymentRepository>();
 
-            Uri endPoint = new Uri("https://localhost:44340/api/BankSimulator");
+            // LOGIC
+            services.AddTransient<IStatus, Status>();
+            services.AddTransient<IPaymentLogic, PaymentLogic>();
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddTransient<IPaymentHistoryDTO, PaymentHistoryDTO>();
+
+            // HTTP CLIENT
+            Uri endPoint = new Uri("https://localhost:44340/api/BankSimulator/CheckPayment");
             HttpClient httpClient = new HttpClient()
             {
                 BaseAddress = endPoint,
             };
-
             ServicePointManager.FindServicePoint(endPoint).ConnectionLeaseTimeout = 60000;
-
-            services.AddSingleton(httpClient);
-
-            services.AddTransient<IPaymentLogic, PaymentLogic>();
-
+            services.AddSingleton(httpClient);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

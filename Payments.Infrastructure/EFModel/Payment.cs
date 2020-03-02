@@ -10,7 +10,7 @@ namespace Payments.Infrastructure.EFModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public float Value { get; set; }
-        public int Currency { get; set; }
+        public string Currency { get; set; }
         public DateTime Date { get; set; }
         public int Status { get; set; }
         public long CardNumber { get; set; }

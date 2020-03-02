@@ -4,6 +4,7 @@ using System;
 
 using Payments.Domain.Model;
 using Payments.Domain.Logic.Interfaces;
+using Payments.Domain.DTOs;
 
 namespace Payments.API.Controllers
 {
@@ -11,30 +12,28 @@ namespace Payments.API.Controllers
     [Route("api/[controller]")]
     public class PaymentsController : ControllerBase
     {
-        private IPaymentLogic _iPaymentLogic;
-
+        private readonly IPaymentLogic _iPaymentLogic;       
+               
         public PaymentsController(IPaymentLogic iPaymentLogic)
         {
             _iPaymentLogic = iPaymentLogic;
         }
 
         [HttpGet]
-        public async Task<ActionResult<Payment>> GetPaymentHistoryById(long id)
+        public async Task<ActionResult<PaymentHistoryDTO>> GetPaymentHistoryById(long id)
         {
-            return await _iPaymentLogic.GetPaymentHistoryById(id);
+            return await _iPaymentLogic.GetPaymentHistoryById(id);            
         }
 
         [HttpPost]
-        public async Task<ActionResult<string>> SendPayment(float paymentValue, int paymentCurrency, int paymentStatus,
-            long cardNumber, string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
+        public async Task<ActionResult<string>> SendPayment(float paymentValue, string paymentCurrency, long cardNumber,
+            string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
         {
             return await _iPaymentLogic.SendPayment(
                 new Payment
                 {
                     Value = paymentValue,
                     Currency = paymentCurrency,
-                    Date = DateTime.Now,
-                    Status = paymentStatus,
                     CardName = cardName,
                     CardNumber = cardNumber,
                     CardExpiryYear = cardExpiryYear,

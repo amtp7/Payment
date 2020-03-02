@@ -41,8 +41,8 @@ namespace Payments.Infrastructure.Migrations
                     b.Property<long>("CardNumber")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");

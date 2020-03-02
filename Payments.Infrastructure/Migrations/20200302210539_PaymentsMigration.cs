@@ -14,7 +14,7 @@ namespace Payments.Infrastructure.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<float>(nullable: false),
-                    Currency = table.Column<int>(nullable: false),
+                    Currency = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     CardNumber = table.Column<long>(nullable: false),

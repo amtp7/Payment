@@ -10,7 +10,7 @@ namespace Payments.Domain.IRepository
         //List<Payment> GetAllPayments();
 
         Task<Payment> GetPayment(long id);
-        void AddPayment(Payment payment);
+        Task<bool> AddPayment(Payment payment);
 
         //void UpdatePayment(Payment dbPayment, Payment payment);
         //void DeletePayment(Payment payment);
