@@ -15,7 +15,6 @@ namespace Payments.Infrastructure.EFModel
         public int ExpiryMonth { get; set; }
         public int Cvv { get; set; }
 
-        public long PaymentId { get; set; }
         public Payment Payment { get; set; }
     }
 }
