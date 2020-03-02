@@ -25,20 +25,18 @@ namespace Payments.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> SendPayment(long paymentId, float paymentValue, int paymentCurrency, DateTime paymentDate, int paymentStatus,
-            long cardId, int cardNumber, string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
+        public async Task<ActionResult<int>> SendPayment(float paymentValue, int paymentCurrency, int paymentStatus,
+            int cardNumber, string cardName, int cardExpiryYear, int cardExpiryMonth, int cardCvv)
         {
             return await _iPaymentLogic.SendPayment(
                 new Payment
                 {
-                    Id = paymentId,
                     Value = paymentValue,
                     Currency = paymentCurrency,
-                    Date = paymentDate,
+                    Date = DateTime.Now,
                     Status = paymentStatus,
                     Card = new Card
                     {
-                        Id = cardId,
                         Name = cardName,
                         Number = cardNumber,
                         ExpiryYear = cardExpiryYear,
