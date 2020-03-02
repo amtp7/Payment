@@ -1,4 +1,4 @@
-# Payment
+# Payments API
 
 Responsible for validating requests, storing card information and forwarding payment requests and accepting payment responses to and from the acquiring bank.
 
