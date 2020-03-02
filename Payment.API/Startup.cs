@@ -16,13 +16,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 using Payments.Domain.IRepository;
-using Payments.Domain.Logic;
 using Payments.Infrastructure.EFModel;
 using Payments.Infrastructure.Repository;
 using Payments.Domain.Logic.Interfaces;
 using Payments.Domain.Logic.Classes;
-using Payments.Infrastructure.Mappers.Interfaces;
-using Payments.Infrastructure.Mappers.Classes;
 
 using AutoMapper;
 using Payments.Infrastructure.MapperProfiles;
@@ -60,7 +57,6 @@ namespace Payments.API
            
             services.AddDbContext<PaymentsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:PaymentsDB"]));
             services.AddTransient<IPaymentRepository, PaymentRepository>();
-            services.AddTransient<IPaymentMapper, PaymentMapper>();
             services.AddTransient<IPaymentLogic, PaymentLogic>();
 
         }
