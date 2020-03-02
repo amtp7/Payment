@@ -10,7 +10,7 @@ using Payments.Infrastructure.EFModel;
 namespace Payments.Infrastructure.Migrations
 {
     [DbContext(typeof(PaymentsContext))]
-    [Migration("20200302023539_PaymentsMigration")]
+    [Migration("20200302025342_PaymentsMigration")]
     partial class PaymentsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,9 +41,6 @@ namespace Payments.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Number")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PaymentId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

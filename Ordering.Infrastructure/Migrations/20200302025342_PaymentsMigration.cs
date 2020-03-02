@@ -17,8 +17,7 @@ namespace Payments.Infrastructure.Migrations
                     Name = table.Column<string>(nullable: true),
                     ExpiryYear = table.Column<int>(nullable: false),
                     ExpiryMonth = table.Column<int>(nullable: false),
-                    Cvv = table.Column<int>(nullable: false),
-                    PaymentId = table.Column<long>(nullable: false)
+                    Cvv = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -41,9 +41,6 @@ namespace Payments.Infrastructure.Migrations
                     b.Property<long>("Number")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PaymentId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.ToTable("Card");
